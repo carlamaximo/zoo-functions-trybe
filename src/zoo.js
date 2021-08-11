@@ -4,7 +4,7 @@ const data = require('./data');
 
 function getSpeciesByIds(...ids) {
   const x = [];
-  return ((ids.length === 0) ? x : (data.species.filter((elemento) => ids.includes(elemento.id))));
+  return ((ids.length === 0) ? x : (species.filter((elemento) => ids.includes(elemento.id))));
 }
 
 function getAnimalsOlderThan(animal, age) {
@@ -20,15 +20,22 @@ function getEmployeeByName(employeeName) {
 }
 
 function createEmployee(personalInfo, associatedWith) {
-  return Object.assign({}, personalInfo, associatedWith);
+  // return Object.assign({}, personalInfo, associatedWith);
 }
 
 function isManager(id) {
-  // seu código aqui
+  const managers = ['stephanieId', 'olaId', 'burlId'];
+  return employees.some((employee) => employee.id === id && employee.managers.includes(managers));
 }
 
-function addEmployee(id, firstName, lastName, managers, responsibleFor) {
-  // seu código aqui
+function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+  return employees.push({
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  });
 }
 
 function countAnimals(species) {
