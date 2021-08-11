@@ -1,6 +1,6 @@
 const { species } = require('./data');
 const { employees } = require('./data');
-const data = require('./data');
+// const data = require('./data');
 
 function getSpeciesByIds(...ids) {
   const x = [];
@@ -24,8 +24,7 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  const managers = ['stephanieId', 'olaId', 'burlId'];
-  return employees.some((employee) => employee.id === id && employee.managers.includes(managers));
+  return employees.some((employee) => employee.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
@@ -39,11 +38,14 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
 }
 
 function countAnimals(species) {
-  // seu código aqui
+
 }
 
 function calculateEntry(entrants) {
-  // seu código aqui
+  if (!entrants) return 0;
+  if (entrants === {}) return 0;
+  const preco = (entrants.adult + entrants.child + entrants.senior);
+  return preco;
 }
 
 function getAnimalMap(options) {
