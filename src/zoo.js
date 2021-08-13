@@ -1,4 +1,4 @@
-const { species, prices } = require('./data');
+const { species, hours, prices } = require('./data');
 const { employees } = require('./data');
 const data = require('./data');
 
@@ -68,39 +68,21 @@ function getAnimalMap(options) {
 }
 
 function getSchedule(dayName) {
-  // const horarios = Object.entries(hours);
-  // const o = {
-  //   Monday: 'CLOSED',
-  // };
-  // if (!dayName) {
-  //   horarios.forEach((horario) => {
-  //     o[horario[0]] = `Open from ${horario[1].open}am until ${horario[1].close - 12}pm`;
-  //   });
-  //   return o;
-  // }
-  // if (dayName === 'Monday') {
-  //   return o;
-  // }
-  // const diaPedido = horarios.find((dia) => dia[0] === dayName);
-  // console.log(diaPedido);
-  // o[diaPedido[0]] = `Open from ${diaPedido[1].open}am until ${diaPedido[1].close - 12}pm`;
-  // return o;
-}
-// 'Tuesday': 'Open from 8am until 6pm'
-// console.log(getSchedule('Monday'));
-// getSchedule('Tuesday');
-// getSchedule();
+  const horarios = Object.entries(hours);
+  const o = {};
+  if (!dayName) {
+    horarios.forEach((horario) => {
+      o[horario[0]] = `Open from ${horario[1].open}am until ${horario[1].close - 12}pm`;
+      if (horario[0] === 'Monday') o[horario[0]] = 'CLOSED';
+    });
+    return o;
+  }
+  const diaPedido = horarios.find((dia) => dia[0] === dayName);
+  o[diaPedido[0]] = `Open from ${diaPedido[1].open}am until ${diaPedido[1].close - 12}pm`;
+  const segunda = { Monday: 'CLOSED' };
 
-// horarios :
-// [
-//   [ 'Tuesday', { open: 8, close: 18 } ],
-//   [ 'Wednesday', { open: 8, close: 18 } ],
-//   [ 'Thursday', { open: 10, close: 20 } ],
-//   [ 'Friday', { open: 10, close: 20 } ],
-//   [ 'Saturday', { open: 8, close: 22 } ],
-//   [ 'Sunday', { open: 8, close: 20 } ],
-//   [ 'Monday', { open: 0, close: 0 } ]
-// ]
+  return (dayName === 'Monday') ? segunda : o;
+}
 
 function getOldestFromFirstSpecies(id) {
   // seu código aqui
