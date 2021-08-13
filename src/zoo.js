@@ -1,4 +1,4 @@
-const { species, prices } = require('./data');
+const { species } = require('./data');
 const { employees } = require('./data');
 const data = require('./data');
 
@@ -40,8 +40,7 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   });
 }
 
-function countAnimals(species) {
-
+function countAnimals() {
 }
 
 function calculateEntry(entrants) {
@@ -55,10 +54,6 @@ function calculateEntry(entrants) {
   const priceSenior = data.prices.Senior * Senior;
   return priceChild + priceAdult + priceSenior;
 }
-
-// console.log(calculateEntry({ 'Adult': 2, 'Child': 3, 'Senior': 1 }));
-// console.log(calculateEntry({ 'Adult': 1 }));
-// console.log(calculateEntry({}));
 
 function getAnimalMap(options) {
   // seu código aqui
