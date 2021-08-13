@@ -1,4 +1,4 @@
-const { species, hours } = require('./data');
+const { species, prices } = require('./data');
 const { employees } = require('./data');
 const data = require('./data');
 
@@ -68,20 +68,23 @@ function getAnimalMap(options) {
 }
 
 function getSchedule(dayName) {
-  const horarios = Object.entries(hours);
-  const o = {
-    Monday: 'CLOSED',
-  };
-  if (!dayName) {
-    horarios.forEach((horario) => {
-      o[horario[0]] = `Open from ${horario[1].open}am until ${horario[1].close - 12}pm`;
-    });
-    return o;
-  }
-  const diaPedido = horarios.find((dia) => dia[0] === dayName);
-  console.log(diaPedido);
-  o[diaPedido[0]] = `Open from ${diaPedido[1].open}am until ${diaPedido[1].close - 12}pm`;
-  return o;
+  // const horarios = Object.entries(hours);
+  // const o = {
+  //   Monday: 'CLOSED',
+  // };
+  // if (!dayName) {
+  //   horarios.forEach((horario) => {
+  //     o[horario[0]] = `Open from ${horario[1].open}am until ${horario[1].close - 12}pm`;
+  //   });
+  //   return o;
+  // }
+  // if (dayName === 'Monday') {
+  //   return o;
+  // }
+  // const diaPedido = horarios.find((dia) => dia[0] === dayName);
+  // console.log(diaPedido);
+  // o[diaPedido[0]] = `Open from ${diaPedido[1].open}am until ${diaPedido[1].close - 12}pm`;
+  // return o;
 }
 // 'Tuesday': 'Open from 8am until 6pm'
 // console.log(getSchedule('Monday'));
@@ -104,28 +107,33 @@ function getOldestFromFirstSpecies(id) {
 }
 
 function increasePrices(percentage) {
-  // seu código aqui
+  Object.entries(prices).forEach((price) => {
+    const chave = price[0];
+    const calculo = (price[1] * (1 + (percentage / 100)));
+    const resultado = ((calculo * 100).toPrecision(4)) / 100;
+    prices[chave] = resultado;
+  });
+  return prices;
 }
-// Parte do código feita sozinha
-const arrayPeople = () => {
 
-};
+// Parte do código feita sozinha
+// const arrayPeople = () => {
+
+// };
 
 function getEmployeeCoverage(idOrName) {
   // Parte do código feito com ajuda da Mayu - 15B, Cris Araldi - 14A e Jéssica Grunewald - 14A
-  if (!idOrName) return arrayPeople();
-  const people = employees
-    .find(({ id, firstName, lastName }) => idOrName === id
-    || idOrName === firstName || idOrName === lastName);
+//   if (!idOrName) return arrayPeople();
+//   const people = employees
+//     .find(({ id, firstName, lastName }) => idOrName === id
+//     || idOrName === firstName || idOrName === lastName);
+// const namePeople = `${people.firstName} ${people.lastName}`;
+// console.log(namePeople);
+//   const arrayAnimals = people.responsibleFor
+//     .map((element) => species.find((specie) => specie.id === element))
+//     .map((object) => object.name);
 
-  const namePeople = `${people.firstName} ${people.lastName}`;
-  console.log(namePeople);
-
-  const arrayAnimals = people.responsibleFor
-    .map((element) => species.find((specie) => specie.id === element))
-    .map((object) => object.name);
-
-  return { [namePeople]: arrayAnimals };
+//   return { [namePeople]: arrayAnimals };
 }
 
 module.exports = {
