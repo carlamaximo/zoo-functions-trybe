@@ -51,20 +51,6 @@ function countAnimals(specieZoo) {
   return (!specieZoo) ? todasEspecies : umaEspecie.residents.length;
 }
 
-// todasEspecies : [
-//   'lions: 4',
-//   'tigers: 2',
-//   'bears: 3',
-//   'penguins: 4',
-//   'otters: 4',
-//   'frogs: 2',
-//   'snakes: 2',
-//   'elephants: 4',
-//   'giraffes: 6'
-// ]
-console.log(countAnimals());
-console.log(countAnimals('lions'));
-
 function calculateEntry(entrants) {
   if (!entrants) return 0;
   if (Object.keys(entrants).length === 0) return 0;
@@ -82,24 +68,36 @@ function getAnimalMap(options) {
 }
 
 function getSchedule(dayName) {
-  // const horarios = Object.entries(hours);
-  // if (!dayName) {
-  //   const resposta = horarios
-  //     .map((horario) => `Open from ${horario[1].open}am until ${horario[1].close - 12}pm`);
-  //   console.log(resposta);
-  // }
-  // if (dayName === 'Monday') {
-  //   return { Monday: 'CLOSED' };
-  // }
-  // const diaPedido = horarios.find((dia) => dia[0] === dayName);
-  // console.log(diaPedido);
-  // const periodo = { [`${diaPedido[0]}]`` : Open from ${diaPedido[1].open}am until ${diaPedido[1].close - 12}pm` };
-  // return periodo;
+  const horarios = Object.entries(hours);
+  const o = {
+    Monday: 'CLOSED',
+  };
+  if (!dayName) {
+    horarios.forEach((horario) => {
+      o[horario[0]] = `Open from ${horario[1].open}am until ${horario[1].close - 12}pm`;
+    });
+    return o;
+  }
+  const diaPedido = horarios.find((dia) => dia[0] === dayName);
+  console.log(diaPedido);
+  o[diaPedido[0]] = `Open from ${diaPedido[1].open}am until ${diaPedido[1].close - 12}pm`;
+  return o;
 }
 // 'Tuesday': 'Open from 8am until 6pm'
 // console.log(getSchedule('Monday'));
-// console.log(getSchedule('Tuesday'));
-// console.log(getSchedule());
+// getSchedule('Tuesday');
+// getSchedule();
+
+// horarios :
+// [
+//   [ 'Tuesday', { open: 8, close: 18 } ],
+//   [ 'Wednesday', { open: 8, close: 18 } ],
+//   [ 'Thursday', { open: 10, close: 20 } ],
+//   [ 'Friday', { open: 10, close: 20 } ],
+//   [ 'Saturday', { open: 8, close: 22 } ],
+//   [ 'Sunday', { open: 8, close: 20 } ],
+//   [ 'Monday', { open: 0, close: 0 } ]
+// ]
 
 function getOldestFromFirstSpecies(id) {
   // seu código aqui
@@ -117,7 +115,7 @@ function getEmployeeCoverage(idOrName) {
   // Parte do código feito com ajuda da Mayu - 15B, Cris Araldi - 14A e Jéssica Grunewald - 14A
   if (!idOrName) return arrayPeople();
   const people = employees
-    .find(({ id, firstName, lastName}) => idOrName === id 
+    .find(({ id, firstName, lastName }) => idOrName === id
     || idOrName === firstName || idOrName === lastName);
 
   const namePeople = `${people.firstName} ${people.lastName}`;
