@@ -8,8 +8,8 @@ function getSpeciesByIds(...ids) {
 }
 
 function getAnimalsOlderThan(animal, age) {
-  // const a = data.species.find((a) => a.name === animal);
-  // return data.species.every((a) => a.age >= age);
+  const animais = species.find((a) => a.name === animal).residents;
+  return animais.every((a) => a.age >= age);
 }
 
 function getEmployeeByName(employeeName) {
@@ -40,8 +40,30 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   });
 }
 
-function countAnimals() {
+function countAnimals(speciesZoo) {
+  // const obj = {};
+  // // const todasEspecies = species.map((specie) => `${specie.name}: ${specie.residents.length}`);
+  // const todasEspecies = species.forEach((specie) => {
+  //   obj[specie.name] = specie.residents.length;
+  //   return obj;
+  // });
+  // const umaEspecie = species.find(({ name }) => name === speciesZoo).residents.length;
+  // return (!speciesZoo) ? todasEspecies : umaEspecie;
 }
+
+// todasEspecies : [
+//   'lions: 4',
+//   'tigers: 2',
+//   'bears: 3',
+//   'penguins: 4',
+//   'otters: 4',
+//   'frogs: 2',
+//   'snakes: 2',
+//   'elephants: 4',
+//   'giraffes: 6'
+// ]
+console.log(countAnimals());
+console.log(countAnimals('lions'));
 
 function calculateEntry(entrants) {
   if (!entrants) return 0;
