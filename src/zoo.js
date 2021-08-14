@@ -89,36 +89,14 @@ function getSchedule(dayName) {
 function getOldestFromFirstSpecies(id) {
   const idAnimal = employees.find((funcionario) => id === funcionario.id).responsibleFor[0];
   const animal = species.find((a) => a.id === idAnimal).residents[0];
-  // console.log(animal);
   const especies = species.map((specie) => specie.residents);
-  // console.log(especies);
   const verifica = especies.find((a) => a.includes(animal));
-  // console.log(verifica);
   const arrayIdades = [];
   verifica.forEach((elemento) => arrayIdades.push(elemento.age));
   const max = arrayIdades.reduce((a, b) => Math.max(a, b));
   const nomeResposta = verifica.find((element) => element.age === max);
-  // console.log(nomeResposta);
-  const resposta = [nomeResposta.name, nomeResposta.sex, max];
-  return resposta;
+  return [nomeResposta.name, nomeResposta.sex, max];
 }
-
-// var max = arr.reduce(function(a, b) {
-//   return Math.max(a, b);
-// });
-
-// getOldestFromFirstSpecies('9e7d4524-363c-416a-8759-8aa7e50c0992');
-// getOldestFromFirstSpecies('4b40a139-d4dc-4f09-822d-ec25e819a5ad');
-
-// const arrayAnimais = species.residents.find((a) => arrayAnimal.name === a.name);
-// console.log(arrayAnimais);
-
-// console.log(arrayAnimal);
-
-// console.log(max);
-// console.log(arrayIdades);
-// console.log(idAnimal);
-// console.log(arrayAnimal);
 
 function increasePrices(percentage) {
   Object.entries(prices).forEach((price) => {
