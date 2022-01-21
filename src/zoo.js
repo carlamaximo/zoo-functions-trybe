@@ -109,24 +109,37 @@ function increasePrices(percentage) {
 }
 
 // Parte do código feita sozinha
-// const arrayPeople = () => {
+const arrayPeople = () => {
+  const peopleFistName = employees.map((employee) => employee.firstName && employee.lastName);
+  // const peopleLastName = employees.map((employee) => employee.lastName);
+  console.log(peopleFistName);
+  // console.log(peopleLastName);
+  // const namePeople = [...peopleFistName, ...peopleLastName];
+  // console.log(namePeople);
+  people.forEach((p) => namePeople.push(p));
+  const arrayAnimals = people.responsibleFor
+    .map((element) => species.find((specie) => specie.id === element))
+    .map((object) => object.name);
 
-// };
+  return { [namePeople]: arrayAnimals };
+};
 
 function getEmployeeCoverage(idOrName) {
   // Parte do código feito com ajuda da Mayu - 15B, Cris Araldi - 14A e Jéssica Grunewald - 14A
-//   if (!idOrName) return arrayPeople();
-//   const people = employees
-//     .find(({ id, firstName, lastName }) => idOrName === id
-//     || idOrName === firstName || idOrName === lastName);
-// const namePeople = `${people.firstName} ${people.lastName}`;
-// console.log(namePeople);
-//   const arrayAnimals = people.responsibleFor
-//     .map((element) => species.find((specie) => specie.id === element))
-//     .map((object) => object.name);
+  if (!idOrName) return arrayPeople();
+  const people = employees
+    .find(({ id, firstName, lastName }) => idOrName === id
+    || idOrName === firstName || idOrName === lastName);
+  const namePeople = `${people.firstName} ${people.lastName}`;
+  console.log(namePeople);
+  const arrayAnimals = people.responsibleFor
+    .map((element) => species.find((specie) => specie.id === element))
+    .map((object) => object.name);
 
-//   return { [namePeople]: arrayAnimals };
+  return { [namePeople]: arrayAnimals };
 }
+
+console.log(getEmployeeCoverage());
 
 module.exports = {
   calculateEntry,
