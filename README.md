@@ -22,8 +22,8 @@
     <h2>Technologies:</h2>
     <ul>
       <li>Javascript</li>
-      <li>NodeJS Assert Module</li>
-      <li>Jest</li>
+      <li>ES6</li>
+      <li>High Order Functions (map, reduce, filter, find, some, every, forEach)</li>
     </ul>
   </main>
 </body>
